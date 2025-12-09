@@ -451,7 +451,25 @@ const Users=({s=24})=><Icon d='<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v
   };
   const allPlans = { tony: tonyWeeklyPlans, stuart: stuartWeeklyPlans };
   const weeklyPlans = allPlans[currentUser];
+const programPhases = {
+    1:{phase:'Foundation Building',dates:'Dec 15-21',focus:'Post-race recovery',intensity:'Low-Moderate',notes:'Recovery week with gradual return.',startDate:'2025-12-15'},
+    2:{phase:'Foundation Building',dates:'Dec 22-28',focus:'Holiday consistency',intensity:'Moderate',notes:'Christmas week. Build base with core.',startDate:'2025-12-22'},
+    3:{phase:'Foundation Building',dates:'Dec 29-Jan 4',focus:'New Year rhythm',intensity:'Moderate',notes:'Strong foundation entering January.',startDate:'2025-12-29'},
+    4:{phase:'Doubles Integration',dates:'Jan 5-11',focus:'🤝 FIRST DOUBLES',intensity:'Moderate-High',notes:'Jan 10: First doubles @ 75% effort.',startDate:'2026-01-05'},
+    5:{phase:'Base Building',dates:'Jan 12-18',focus:'Individual training',intensity:'Moderate',notes:'Build strength and running base.',startDate:'2026-01-12'},
+    6:{phase:'Doubles Integration',dates:'Jan 19-25',focus:'🤝 SECOND DOUBLES',intensity:'Moderate-High',notes:'Jan 24: Second doubles @ 85% effort.',startDate:'2026-01-19'},
+    7:{phase:'Base Building',dates:'Jan 26-Feb 1',focus:'Individual training',intensity:'Moderate',notes:'Maintain quality. Volume building.',startDate:'2026-01-26'},
+    8:{phase:'Doubles Integration',dates:'Feb 2-8',focus:'🤝 THIRD DOUBLES',intensity:'High',notes:'Feb 7: Third doubles @ 90% effort.',startDate:'2026-02-02'},
+    9:{phase:'Base Building',dates:'Feb 9-15',focus:'Maintenance',intensity:'Moderate',notes:'Reduced strength volume.',startDate:'2026-02-09'},
+    10:{phase:'Doubles Integration',dates:'Feb 16-22',focus:'🤝 FINAL DOUBLES',intensity:'High',notes:'Feb 21: Final rehearsal @ 90%.',startDate:'2026-02-16'},
+    11:{phase:'Taper Week 1',dates:'Feb 23-Mar 1',focus:'Reduce Volume 30%',intensity:'Moderate',notes:'Begin taper. Maintain intensity.',startDate:'2026-02-23'},
+    12:{phase:'Taper Week 2',dates:'Mar 2-8',focus:'Technique Only',intensity:'Low-Moderate',notes:'Further reduction. Building energy.',startDate:'2026-03-02'},
+    13:{phase:'Taper Week 3',dates:'Mar 9-15',focus:'Final Prep',intensity:'Low',notes:'Minimal volume. Race protocols.',startDate:'2026-03-09'},
+    14:{phase:'Race Week Prep',dates:'Mar 16-22',focus:'Build-up',intensity:'Very Low',notes:'Rest priority. Carb loading begins.',startDate:'2026-03-16'},
+    15:{phase:'RACE WEEK',dates:'Mar 23-29',focus:'🏆 RACE DAY Mar 29',intensity:'Race',notes:'Execute the plan. SUB 1:20:00! 🔥',startDate:'2026-03-23'}
+  };
 
+  const stuartProgramPhases = {
   const stuartProgramPhases = {
     1:{phase:'Half Marathon Base',dates:'Dec 8-14',focus:'Foundation - aerobic base & strength',intensity:'Low-Moderate',notes:'Building aerobic capacity and strength foundation',startDate:'2025-12-08'},
     2:{phase:'Half Marathon Base',dates:'Dec 15-21',focus:'Volume increase',intensity:'Moderate',notes:'Progressive overload, building endurance',startDate:'2025-12-15'},
