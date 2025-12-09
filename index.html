@@ -150,15 +150,155 @@ function App(){
   useEffect(()=>{localStorage.setItem('tony_comp',JSON.stringify(comp))},[comp]);
 
   const tonyWeeklyPlans = {
-    1: [
-      {day:'Mon Dec 15',sessionType:'REST / Light Recovery',duration:'30 mins optional',intensity:'Very Low',notes:'8 days post-race. Prioritize recovery. Optional: 30min easy walk, 20min bike, or complete rest.'},
-      {day:'Tue Dec 16',sessionType:'Easy Recovery Run',duration:'30 mins',intensity:'Very Low - Zone 1',mainWorkout:{run:{targetPace:'6:30-6:45/km',heartRateZone:'Zone 1',targetHR:'91-109 bpm'}},notes:'First run post-race. Keep HR in Zone 1. Monitor closely.'},
-      {day:'Wed Dec 17',sessionType:'Functional Strength + Core',duration:'60 mins',intensity:'Moderate',notes:'Strength: Front Squats 4x8, Farmer Holds 4x45sec, Wall Balls 4x25, Pull-ups 4x8-10\nCore: Ab Wheel 10, Pallof Press 12/side, Dead Bugs 20, Copenhagen Planks 20sec, Hollow Rocks 15 (3 rounds)'},
-      {day:'Thu Dec 18',sessionType:'REST',intensity:'None',notes:'Complete rest. Sleep and nutrition focus.'},
-      {day:'Fri Dec 19',sessionType:'Easy Run + Core',duration:'45 mins',intensity:'Low - Zone 2',mainWorkout:{run:{duration:'35min',targetPace:'6:15-6:30/km',heartRateZone:'Zone 2',targetHR:'109-127 bpm'}},notes:'Building volume gradually. Core: Plank 60s, Side Plank 45s, Reverse Plank 30s, Mt Climbers 30s (2 rounds)'},
-      {day:'Sat Dec 20',sessionType:'Long Run',duration:'55-60 mins',intensity:'Moderate - Zone 2-3',mainWorkout:{run:{distance:'9-10km',targetPace:'6:00-6:15/km',heartRateZone:'Zone 2 → Zone 3',targetHR:'120-140 bpm'}},notes:'Progressive: Start 6:10/km, finish 5:55/km. HR drift is normal.'},
-      {day:'Sun Dec 21',sessionType:'Active Recovery',duration:'20-30 mins',intensity:'Very Low - Zone 1',notes:'Optional: walk (91-109 bpm), easy bike, or complete rest.'}
-    ],
+1: [
+    {
+      day:'Mon Dec 15',
+      sessionType:'Functional Strength',
+      duration:'55 mins',
+      intensity:'Moderate',
+      mainWorkout:{
+        warmup:{description:'10min dynamic warmup + 5min easy Row'},
+        exercises:[
+          {name:'Box Squats',sets:4,reps:8,weight:'65-75kg',rest:'2min',notes:'Explosive drive from bottom'},
+          {name:'Step-ups',sets:3,reps:'12 each leg',weight:'18kg DBs',rest:'90sec',notes:'Build single leg strength'},
+          {name:'Overhead Press',sets:4,reps:10,weight:'20-24kg DBs',rest:'90sec'},
+          {name:'Renegade Rows',sets:4,reps:'10 each arm',weight:'18kg DBs',rest:'90sec',notes:'Anti-rotation core'},
+          {name:'Hollow Holds',sets:3,duration:'45sec',rest:'60sec'}
+        ],
+        coreFinisher:{
+          duration:'12 mins',
+          rounds:3,
+          exercises:[
+            {name:'Plank Hold',duration:'45sec',notes:'Neutral spine, squeeze glutes'},
+            {name:'Dead Bugs',reps:16,notes:'Press lower back down'},
+            {name:'Side Plank',duration:'30sec each side'},
+            {name:'Hollow Holds',duration:'20sec'}
+          ]
+        }
+      },
+      notes:'Easing back into training. Strength: Box Squats 4x8 @ 65-75kg, Step-ups 3x12/leg, Overhead Press 4x10, Renegade Rows 4x10/arm, Hollow Holds 3x45s\nCore: Plank 45s, Dead Bugs 16, Side Planks 30s/side, Hollow 20s (3 rounds)'
+    },
+    {
+      day:'Tue Dec 16',
+      sessionType:'Fartlek Run',
+      duration:'50 mins',
+      intensity:'Moderate - Zone 2-3',
+      mainWorkout:{
+        run:{
+          warmup:{duration:'10min',pace:'6:30/km',HR:'109-127 bpm (Zone 2)'},
+          main:{
+            duration:'35min',
+            type:'Fartlek - Easy Introduction',
+            structure:[
+              {duration:'3min',pace:'5:30/km',HR:'127-145 bpm (Zone 3)',effort:'Moderate'},
+              {recovery:'2min',pace:'6:15/km',HR:'109-127 bpm (Zone 2)'},
+              {duration:'2min',pace:'5:00/km',HR:'135-150 bpm (Zone 3)',effort:'Moderately hard'},
+              {recovery:'2min',pace:'6:15/km'},
+              {duration:'4min',pace:'5:45/km',HR:'120-140 bpm (Zone 3)',effort:'Comfortable'},
+              {recovery:'2min',pace:'6:15/km'},
+              {duration:'1min',pace:'4:40/km',HR:'145-160 bpm (Zone 4)',effort:'Hard'},
+              {recovery:'2min',pace:'6:15/km'},
+              {note:'Repeat pattern once more'}
+            ]
+          },
+          cooldown:{duration:'5min',pace:'6:45/km'}
+        }
+      },
+      totalDistance:'~7.5-8km',
+      notes:'Easing back with varied pace. Warmup 10min. Fartlek 35min: 3min mod (5:30), 2min rec, 2min hard (5:00), 2min rec, 4min steady (5:45), 2min rec, 1min fast (4:40) - repeat. Cooldown 5min. Total ~8km'
+    },
+    {
+      day:'Wed Dec 17',
+      sessionType:'Easy Run',
+      duration:'35 mins',
+      intensity:'Low - Zone 2',
+      mainWorkout:{
+        run:{
+          duration:'35min',
+          targetPace:'6:15-6:30/km',
+          heartRateZone:'Zone 2',
+          targetHR:'109-127 bpm',
+          distance:'~5.5km',
+          effort:'Conversational, easy',
+          notes:'Keep HR in Zone 2. If climbs to 130+, slow down.'
+        }
+      },
+      notes:'Easy recovery run. 35min @ 6:15-6:30/km, Zone 2 (109-127 bpm). Conversational pace. ~5.5km'
+    },
+    {
+      day:'Thu Dec 18',
+      sessionType:'REST',
+      intensity:'None',
+      notes:'Complete rest. Focus on sleep (8+ hours), hydration (3L water), and nutrition. Optional: 15min light stretching or foam rolling.'
+    },
+    {
+      day:'Fri Dec 19',
+      sessionType:'Functional Strength + Core',
+      duration:'60 mins',
+      intensity:'Moderate',
+      mainWorkout:{
+        warmup:{description:'10min dynamic warmup'},
+        exercises:[
+          {name:'Front Squats',sets:4,reps:8,weight:'55-65kg',rest:'2min',notes:'Deep breath, brace core'},
+          {name:'Sled Pull',sets:5,distance:'25m',weight:'Race weight',rest:'90sec',notes:'Explosive pulls, technical practice'},
+          {name:'Burpee Broad Jumps',sets:4,reps:12,rest:'90sec',notes:'Building power and capacity'},
+          {name:'Bent Over Rows',sets:4,reps:12,weight:'24-28kg DBs',rest:'90sec'},
+          {name:'Farmers Carry',sets:3,distance:'50m',weight:'28kg per hand',rest:'90sec',notes:'Grip endurance'}
+        ],
+        coreFinisher:{
+          duration:'15 mins',
+          rounds:3,
+          exercises:[
+            {name:'Ab Wheel Rollouts',reps:10,notes:'Control the extension, pull back with abs'},
+            {name:'Pallof Press',reps:'12 each side',resistance:'Medium band',notes:'Resist rotation'},
+            {name:'Dead Bugs',reps:20,notes:'Press lower back into floor'},
+            {name:'Russian Twists',reps:30,weight:'10kg plate',notes:'Controlled rotation'},
+            {name:'Hollow Rocks',reps:15}
+          ],
+          rest:'45sec between exercises, 90sec between rounds'
+        }
+      },
+      notes:'Full strength session. Front Squats 4x8, Sled Pull 5x25m, Burpee BJ 4x12, Bent Rows 4x12, Farmers 3x50m\nCore finisher: Ab Wheel 10, Pallof 12/side, Dead Bugs 20, Russian Twists 30, Hollow Rocks 15 (3 rounds)'
+    },
+    {
+      day:'Sat Dec 20',
+      sessionType:'Long Run',
+      duration:'70 mins',
+      intensity:'Moderate - Zone 2',
+      mainWorkout:{
+        run:{
+          distance:'11-12km',
+          targetPace:'5:50-6:05/km',
+          heartRateZone:'Zone 2 → low Zone 3',
+          targetHR:'115-140 bpm',
+          effort:'Comfortable, building to moderate',
+          structure:{
+            first4km:{pace:'6:00-6:05/km',HR:'115-125 bpm',notes:'Settle in comfortably'},
+            middle5km:{pace:'5:55-6:00/km',HR:'125-135 bpm',notes:'Main aerobic work'},
+            final2_3km:{pace:'5:50-5:55/km',HR:'135-140 bpm',notes:'Finish with purpose'}
+          },
+          notes:'Progressive long run. Start easy, build gradually. HR drift is normal and expected.'
+        }
+      },
+      notes:'Long run 11-12km. Progressive: Start 6:00-6:05/km (HR 115-125), middle 5:55-6:00 (HR 125-135), finish 5:50-5:55 (HR 135-140). Total 70min. Building aerobic base.'
+    },
+    {
+      day:'Sun Dec 21',
+      sessionType:'Active Recovery',
+      duration:'30 mins',
+      intensity:'Very Low - Zone 1',
+      mainWorkout:{
+        options:[
+          {activity:'Easy walk',duration:'30min',HR:'91-109 bpm',notes:'Conversational pace'},
+          {activity:'Easy bike',duration:'25min',HR:'91-109 bpm',notes:'Low resistance'},
+          {activity:'Swim',duration:'20min',notes:'Very easy, just movement'},
+          {activity:'Yoga/Stretching',duration:'30min',focus:'Hip mobility, hamstrings, thoracic spine'},
+          {activity:'Complete rest',notes:'If body needs it'}
+        ]
+      },
+      notes:'Active recovery options: 30min walk (91-109 bpm), 25min easy bike, 20min swim, 30min yoga/stretching, or complete rest. Listen to your body.'
+    }
+  ],
     2: [
       {day:'Mon Dec 22',sessionType:'Functional Strength + Core',duration:'65 mins',intensity:'Moderate',notes:'Strength: Back Squats 4x10, Sled Push 5x25m (light), Farmers 4x50m, Bench 4x10, Lunges 3x30m\nCore: Weighted Plank 45s, Single Arm Farmers 25m/side, Toes to Bar 10, Pallof 15/side, V-ups 12 (3 rounds)'},
       {day:'Tue Dec 23',sessionType:'Fartlek Run + Core',duration:'55 mins',intensity:'Moderate-High - Zone 3-4',mainWorkout:{run:{type:'Fartlek',duration:'35min'}},notes:'Warmup 10min. Main: 2min hard (4:30/km Z4-5), 2min easy, 3min mod (4:45 Z4), 2min easy, 4min steady (5:00 Z3), 2min easy, 1min fast (4:15 Z5) - repeat pattern.\nCore: Plank-Dog 12, Side Plank Dips 10/side, Mt Climbers 40s, Supermans 15 (2 rounds)'},
