@@ -1,1440 +1,575 @@
-{
-  "trainingPlan": {
-    "programInfo": {
-      "name": "Hyrox Doubles Training Plan",
-      "raceDate": "2026-03-29",
-      "raceEvent": "Hyrox Doubles - London ExCel",
-      "targetTime": "01:20:00",
-      "startDate": "2025-12-15",
-      "endDate": "2026-03-29",
-      "totalWeeks": 15,
-      "weeklyStructure": {
-        "strengthSessions": 2,
-        "runningSessions": 2,
-        "coreSessions": "3-4 per week (integrated)",
-        "stationWork": "Integrated with strength or standalone",
-        "doublesFrequency": "Every other week in January, then strategic through Feb-Mar"
-      }
-    },
-    "heartRateZones": {
-      "athlete_1": {
-        "maxHR": 181,
-        "restingHR": 55,
-        "zones": {
-          "zone1": {
-            "name": "Recovery",
-            "percentage": "50-60% max HR",
-            "bpm": "91-109",
-            "effort": "Very easy, can hold conversation easily",
-            "lactate": "<2 mmol/L"
-          },
-          "zone2": {
-            "name": "Aerobic/Base",
-            "percentage": "60-70% max HR",
-            "bpm": "109-127",
-            "effort": "Comfortable, conversational pace",
-            "lactate": "2-3 mmol/L"
-          },
-          "zone3": {
-            "name": "Tempo",
-            "percentage": "70-80% max HR",
-            "bpm": "127-145",
-            "effort": "Comfortably hard, can speak short sentences",
-            "lactate": "3-4 mmol/L"
-          },
-          "zone4": {
-            "name": "Threshold",
-            "percentage": "80-90% max HR",
-            "bpm": "145-163",
-            "effort": "Hard, can only speak few words",
-            "lactate": "4-6 mmol/L"
-          },
-          "zone5": {
-            "name": "VO2 Max",
-            "percentage": "90-100% max HR",
-            "bpm": "163-181",
-            "effort": "Maximum, cannot speak",
-            "lactate": ">6 mmol/L"
-          }
-        },
-        "hyroxRaceHR": {
-          "targetAverage": "155-165 bpm (Zone 4)",
-          "stations": "165-175 bpm (Upper Zone 4)",
-          "runs": "145-160 bpm (Zone 3-4)"
-        }
-      },
-      "athlete_2": {
-        "maxHR": 172,
-        "restingHR": 58,
-        "zones": {
-          "zone1": {
-            "name": "Recovery",
-            "percentage": "50-60% max HR",
-            "bpm": "86-103",
-            "effort": "Very easy, can hold conversation easily",
-            "lactate": "<2 mmol/L"
-          },
-          "zone2": {
-            "name": "Aerobic/Base",
-            "percentage": "60-70% max HR",
-            "bpm": "103-120",
-            "effort": "Comfortable, conversational pace",
-            "lactate": "2-3 mmol/L"
-          },
-          "zone3": {
-            "name": "Tempo",
-            "percentage": "70-80% max HR",
-            "bpm": "120-138",
-            "effort": "Comfortably hard, can speak short sentences",
-            "lactate": "3-4 mmol/L"
-          },
-          "zone4": {
-            "name": "Threshold",
-            "percentage": "80-90% max HR",
-            "bpm": "138-155",
-            "effort": "Hard, can only speak few words",
-            "lactate": "4-6 mmol/L"
-          },
-          "zone5": {
-            "name": "VO2 Max",
-            "percentage": "90-100% max HR",
-            "bpm": "155-172",
-            "effort": "Maximum, cannot speak",
-            "lactate": ">6 mmol/L"
-          }
-        },
-        "hyroxRaceHR": {
-          "targetAverage": "148-158 bpm (Zone 4)",
-          "stations": "158-165 bpm (Upper Zone 4)",
-          "runs": "138-152 bpm (Zone 3-4)"
-        }
-      }
-    },
-    "coreTrainingPhilosophy": {
-      "frequency": "3-4 times per week",
-      "integration": "Post-run or post-strength sessions",
-      "duration": "10-15 minutes per session",
-      "focus": [
-        "Anti-extension (planks, dead bugs, hollow holds)",
-        "Anti-rotation (Pallof press, side planks, bird dogs)",
-        "Anti-lateral flexion (suitcase carries, side planks)",
-        "Hip flexor strength (hanging knee raises, V-ups)",
-        "Rotational power (Russian twists, medicine ball throws)",
-        "Breathing and bracing under load"
-      ],
-      "hyroxSpecific": {
-        "wallBalls": "Anti-extension strength for squat depth maintenance",
-        "burpeeBJ": "Hip flexor power for explosive jumps",
-        "sledPushPull": "Bracing and anti-extension under load",
-        "farmersCarry": "Anti-lateral flexion and oblique endurance",
-        "running": "Hip stability and running economy"
-      }
-    },
-    "weeks": [
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Tony Training">
+  <title>Tony's Hyrox Doubles Training</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+    }
+    body {
+      overscroll-behavior: none;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto',sans-serif;background:#0a0a0a">
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect}=React;
+const Icon=({d,s=24})=><svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" dangerouslySetInnerHTML={{__html:d}}/>;
+const Calendar=({s=24})=><Icon d='<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>' s={s}/>;
+const Plus=({s=24})=><Icon d='<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>' s={s}/>;
+const User=({s=24})=><Icon d='<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>' s={s}/>;
+const CheckCircle=({s=24})=><Icon d='<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' s={s}/>;
+const Flame=({s=24})=><Icon d='<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>' s={s}/>;
+const TrendingUp=({s=24})=><Icon d='<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>' s={s}/>;
+const Clock=({s=24})=><Icon d='<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>' s={s}/>;
+const Heart=({s=24})=><Icon d='<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>' s={s}/>;
+const Users=({s=24})=><Icon d='<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' s={s}/>;
+
+const USER = {
+  name: 'Tony',
+  age: 39,
+  height: '172cm',
+  weight: '77kg',
+  category: 'Hyrox Doubles | Target: Sub 1:20:00',
+  partner: 'Stuart (48)',
+  recentPR: '1:29:25 (London ExCel)',
+  partnerPR: '1:28:31 (Madrid Doubles)'
+};
+
+function WorkoutCard({day,isComplete,onToggle,showHR=false}){
+  const[showDetails,setShowDetails]=useState(false);
+  
+  if(!day){
+    return <div className="border-2 border-dashed rounded-lg p-4 text-center" style={{backgroundColor:'#1a1a1a',borderColor:'#333',color:'#ff6b35'}}>
+      No workout scheduled
+    </div>;
+  }
+  
+  return <div 
+    className={`border-2 rounded-lg p-4 transition ${isComplete?'shadow-lg':''}`}
+    style={isComplete?{backgroundColor:'#1a1a1a',borderColor:'#ff6b35'}:{backgroundColor:'#1a1a1a',borderColor:'#333'}}
+  >
+    <div className="flex items-start gap-4">
+      <button 
+        onClick={onToggle} 
+        className={`flex-shrink-0 mt-1 w-6 h-6 rounded border-2 flex items-center justify-center transition ${isComplete?'border-transparent':''}`} 
+        style={isComplete?{backgroundColor:'#ff6b35',borderColor:'#ff6b35'}:{borderColor:'#ff6b35'}}
+      >
+        {isComplete&&<CheckCircle s={20}/>}
+      </button>
+      <div className="flex-1">
+        <div className="flex items-start justify-between mb-2">
+          <div>
+            <div className="font-bold text-lg text-white">{day.day}</div>
+            <div className="text-sm text-gray-400">{day.sessionType}</div>
+          </div>
+          <div className="px-3 py-1 rounded-full text-xs font-semibold text-white" 
+               style={{backgroundColor:day.sessionType.includes('REST')?'#666':day.sessionType.includes('Strength')?'#ff6b35':day.sessionType.includes('Run')?'#ff8c42':'#ffa05c'}}>
+            {day.intensity || 'Moderate'}
+          </div>
+        </div>
+        
+        {day.mainWorkout?.run?.heartRateZone && showHR && (
+          <div className="flex items-center gap-2 mb-2 text-xs text-gray-400">
+            <Heart s={14}/>
+            <span>{day.mainWorkout.run.heartRateZone} ({day.mainWorkout.run.targetHR})</span>
+          </div>
+        )}
+        
+        <div className="text-sm text-gray-300 mb-2">{day.duration || day.mainWorkout?.run?.duration || day.notes}</div>
+        
+        <button 
+          onClick={()=>setShowDetails(!showDetails)} 
+          className="text-xs font-semibold" 
+          style={{color:'#ff6b35'}}
+        >
+          {showDetails?'▼ Hide Details':'▶ Show Full Workout'}
+        </button>
+        
+        {showDetails&&(
+          <div className="mt-3 p-3 rounded text-sm text-gray-200 whitespace-pre-line border" 
+               style={{backgroundColor:'#0a0a0a',borderColor:'#333'}}>
+            {day.notes || JSON.stringify(day.mainWorkout, null, 2)}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+}
+
+function App(){
+  const[tab,setTab]=useState('plan');
+  const[workouts,setWorkouts]=useState([]);
+  const[comp,setComp]=useState({});
+  const[week,setWeek]=useState(1);
+  const[showLogForm,setShowLogForm]=useState(false);
+  const[currentWorkout,setCurrentWorkout]=useState({
+    date:new Date().toISOString().split('T')[0],
+    type:'',
+    duration:'',
+    notes:''
+  });
+
+  useEffect(()=>{
+    try{
+      const savedWorkouts=JSON.parse(localStorage.getItem('tony_workouts')||'[]');
+      const savedComp=JSON.parse(localStorage.getItem('tony_comp')||'{}');
+      setWorkouts(savedWorkouts);
+      setComp(savedComp);
+    }catch(e){}
+  },[]);
+
+  useEffect(()=>{localStorage.setItem('tony_workouts',JSON.stringify(workouts))},[workouts]);
+  useEffect(()=>{localStorage.setItem('tony_comp',JSON.stringify(comp))},[comp]);
+
+  // Training plan data structure
+  const tonyWeeklyPlans = {
+    1: [
       {
-        "weekNumber": 1,
-        "weekDates": "2025-12-15 to 2025-12-21",
-        "phase": "Foundation Building",
-        "weekFocus": "Post-race recovery week, establish baseline for doubles-specific training",
-        "combinedSession": false,
-        "note": "Tony just raced on Dec 7, so this is active recovery week",
-        "days": [
-          {
-            "dayNumber": 1,
-            "date": "2025-12-15",
-            "dayOfWeek": "Monday",
-            "athlete_1": {
-              "sessionType": "REST / Light Recovery",
-              "duration": "30 mins optional",
-              "intensity": "Very Low",
-              "mainWorkout": {
-                "options": [
-                  "30min easy walk",
-                  "20min easy bike",
-                  "Complete rest"
-                ]
-              },
-              "notes": "8 days post-race. Listen to your body. Prioritize recovery."
-            },
-            "athlete_2": {
-              "sessionType": "Functional Strength + Core",
-              "duration": "55 mins",
-              "intensity": "Moderate",
-              "warmup": {
-                "description": "10min dynamic warmup",
-                "exercises": ["Leg swings", "Arm circles", "Bodyweight squats", "Lunges", "Cat-cow stretches"]
-              },
-              "mainWorkout": {
-                "type": "Strength Circuit",
-                "exercises": [
-                  {
-                    "name": "Goblet Squats",
-                    "sets": 4,
-                    "reps": 10,
-                    "weight": "24-32kg KB",
-                    "rest": "90sec",
-                    "notes": "Deep squat, chest up, core braced"
-                  },
-                  {
-                    "name": "Single Leg Romanian Deadlifts",
-                    "sets": 3,
-                    "reps": "8 each leg",
-                    "weight": "20-24kg DB",
-                    "rest": "60sec",
-                    "notes": "Balance and posterior chain"
-                  },
-                  {
-                    "name": "Push-ups",
-                    "sets": 4,
-                    "reps": "15-20",
-                    "rest": "60sec",
-                    "notes": "Chest to ground, maintain hollow body position"
-                  },
-                  {
-                    "name": "Bent Over Rows",
-                    "sets": 4,
-                    "reps": 12,
-                    "weight": "24-28kg DBs",
-                    "rest": "90sec",
-                    "notes": "Squeeze shoulder blades, brace core"
-                  }
-                ]
-              },
-              "coreFinisher": {
-                "type": "Core Circuit",
-                "duration": "12 mins",
-                "rounds": 3,
-                "exercises": [
-                  {
-                    "name": "Plank Hold",
-                    "duration": "45sec",
-                    "notes": "Neutral spine, squeeze glutes, breathe"
-                  },
-                  {
-                    "name": "Dead Bugs",
-                    "reps": 16,
-                    "notes": "Press lower back into floor, opposite arm/leg"
-                  },
-                  {
-                    "name": "Side Plank",
-                    "duration": "30sec each side",
-                    "notes": "Stacked hips, top arm extended"
-                  },
-                  {
-                    "name": "Hollow Holds",
-                    "duration": "20sec",
-                    "notes": "Lower back pressed down, arms overhead"
-                  }
-                ],
-                "rest": "45sec between exercises, 60sec between rounds"
-              },
-              "notes": "Start building strength foundation. Core work sets baseline."
-            }
-          },
-          {
-            "dayNumber": 2,
-            "date": "2025-12-16",
-            "dayOfWeek": "Tuesday",
-            "athlete_1": {
-              "sessionType": "Easy Recovery Run",
-              "duration": "30 mins",
-              "intensity": "Very Low - Zone 1",
-              "mainWorkout": {
-                "run": {
-                  "type": "Time-based",
-                  "duration": "30min",
-                  "targetPace": "6:30-6:45/km",
-                  "heartRateZone": "Zone 1",
-                  "targetHR": "91-109 bpm",
-                  "distance": "~4.5km",
-                  "effort": "Very easy, nose breathing only",
-                  "notes": "Conversational pace. Stop if any pain. HR should stay below 110 bpm."
-                }
-              },
-              "notes": "First run post-race. Keep it easy. Building back up. Monitor HR closely."
-            },
-            "athlete_2": {
-              "sessionType": "Tempo Run",
-              "duration": "50 mins",
-              "intensity": "Moderate - Zone 3",
-              "warmup": {
-                "description": "2km easy jog",
-                "pace": "6:15/km",
-                "heartRateZone": "Zone 2",
-                "targetHR": "103-120 bpm",
-                "duration": "~12min"
-              },
-              "mainWorkout": {
-                "type": "Tempo",
-                "run": {
-                  "distance": "4km",
-                  "targetPace": "5:15-5:25/km",
-                  "heartRateZone": "Zone 3",
-                  "targetHR": "120-138 bpm",
-                  "effort": "Comfortably hard - could hold conversation in short sentences",
-                  "duration": "~21-22min",
-                  "notes": "This is race pace effort for doubles. Should feel sustainable."
-                }
-              },
-              "cooldown": {
-                "description": "1.5km easy jog",
-                "pace": "6:15/km",
-                "heartRateZone": "Zone 2",
-                "targetHR": "103-120 bpm",
-                "duration": "~9min"
-              },
-              "totalDistance": "~7.5km",
-              "coreFinisher": {
-                "type": "Quick Core",
-                "duration": "10 mins",
-                "rounds": 2,
-                "exercises": [
-                  {
-                    "name": "V-ups",
-                    "reps": 15,
-                    "notes": "Touch hands to feet, control down"
-                  },
-                  {
-                    "name": "Bird Dogs",
-                    "reps": "12 each side",
-                    "notes": "Hold 2sec at extension"
-                  },
-                  {
-                    "name": "Russian Twists",
-                    "reps": 30,
-                    "weight": "10kg plate",
-                    "notes": "Feet elevated, controlled rotation"
-                  },
-                  {
-                    "name": "Plank Shoulder Taps",
-                    "reps": 20,
-                    "notes": "Minimize hip rotation"
-                  }
-                ],
-                "rest": "30sec between exercises"
-              },
-              "notes": "Building tempo endurance at target race pace. Core work for running stability."
-            }
-          },
-          {
-            "dayNumber": 3,
-            "date": "2025-12-17",
-            "dayOfWeek": "Wednesday",
-            "athlete_1": {
-              "sessionType": "Functional Strength + Core Focus",
-              "duration": "60 mins",
-              "intensity": "Moderate",
-              "warmup": {
-                "description": "10min dynamic warmup + 5min easy SkiErg"
-              },
-              "mainWorkout": {
-                "type": "Hyrox-Specific Strength",
-                "exercises": [
-                  {
-                    "name": "Front Squats",
-                    "sets": 4,
-                    "reps": 8,
-                    "weight": "60-70% 1RM or 50-60kg",
-                    "rest": "2min",
-                    "notes": "Build leg drive for sleds. Deep breath, brace core hard"
-                  },
-                  {
-                    "name": "Farmer Walk Holds",
-                    "sets": 4,
-                    "duration": "45sec",
-                    "weight": "32-36kg per hand",
-                    "rest": "90sec",
-                    "notes": "Static hold - build grip endurance and anti-lateral flexion"
-                  },
-                  {
-                    "name": "Wall Ball Practice",
-                    "sets": 4,
-                    "reps": 25,
-                    "weight": "9kg",
-                    "rest": "90sec",
-                    "notes": "Focus on rhythm, breathing, and core-to-extremity power transfer"
-                  },
-                  {
-                    "name": "Pull-ups",
-                    "sets": 4,
-                    "reps": "8-10",
-                    "rest": "90sec",
-                    "notes": "Build pulling strength. Maintain hollow body"
-                  }
-                ]
-              },
-              "coreFinisher": {
-                "type": "Anti-Extension + Anti-Rotation Circuit",
-                "duration": "15 mins",
-                "rounds": 3,
-                "exercises": [
-                  {
-                    "name": "Ab Wheel Rollouts (or plank walk-outs)",
-                    "reps": 10,
-                    "notes": "Control the extension, pull back with abs"
-                  },
-                  {
-                    "name": "Pallof Press",
-                    "reps": "12 each side",
-                    "resistance": "Medium band or cable",
-                    "notes": "Resist rotation, press straight out"
-                  },
-                  {
-                    "name": "Dead Bugs",
-                    "reps": 20,
-                    "notes": "Press lower back down entire time"
-                  },
-                  {
-                    "name": "Copenhagen Planks",
-                    "duration": "20sec each side",
-                    "notes": "Top leg on bench, squeeze glutes and obliques"
-                  },
-                  {
-                    "name": "Hollow Rocks",
-                    "reps": 15,
-                    "notes": "Small controlled rocks, maintain hollow position"
-                  }
-                ],
-                "rest": "45sec between exercises, 90sec between rounds"
-              },
-              "notes": "First real strength session back. Don't overdo it. Core finisher is critical."
-            },
-            "athlete_2": {
-              "sessionType": "REST / Active Recovery",
-              "duration": "0-30 mins",
-              "intensity": "Very Low",
-              "options": [
-                "Complete rest",
-                "20min easy walk - HR Zone 1 (86-103 bpm)",
-                "Mobility work + light stretching"
-              ],
-              "notes": "Recovery day between quality sessions."
-            }
-          },
-          {
-            "dayNumber": 4,
-            "date": "2025-12-18",
-            "dayOfWeek": "Thursday",
-            "athlete_1": {
-              "sessionType": "REST",
-              "notes": "Complete rest. Focus on sleep and nutrition."
-            },
-            "athlete_2": {
-              "sessionType": "Easy Run",
-              "duration": "40 mins",
-              "intensity": "Low - Zone 2",
-              "mainWorkout": {
-                "run": {
-                  "type": "Time-based",
-                  "duration": "40min",
-                  "targetPace": "6:15-6:30/km",
-                  "heartRateZone": "Zone 2",
-                  "targetHR": "103-120 bpm",
-                  "distance": "~6-6.5km",
-                  "effort": "Easy conversational pace",
-                  "notes": "Should be able to chat comfortably. HR steady in Zone 2."
-                }
-              },
-              "notes": "Recovery run. Keep HR low and steady."
-            }
-          },
-          {
-            "dayNumber": 5,
-            "date": "2025-12-19",
-            "dayOfWeek": "Friday",
-            "athlete_1": {
-              "sessionType": "Easy Run + Core",
-              "duration": "45 mins",
-              "intensity": "Low - Zone 2",
-              "mainWorkout": {
-                "run": {
-                  "type": "Time-based",
-                  "duration": "35min",
-                  "targetPace": "6:15-6:30/km",
-                  "heartRateZone": "Zone 2",
-                  "targetHR": "109-127 bpm",
-                  "distance": "~5-5.5km",
-                  "effort": "Comfortable, conversational",
-                  "notes": "Building volume back up gradually. Monitor HR."
-                }
-              },
-              "coreFinisher": {
-                "type": "Core Endurance Circuit",
-                "duration": "10 mins",
-                "exercises": [
-                  {
-                    "name": "Plank Hold",
-                    "duration": "60sec",
-                    "notes": "Focus on breathing while braced"
-                  },
-                  {
-                    "name": "Side Plank Hold",
-                    "duration": "45sec each side",
-                    "notes": "Top arm reaching to ceiling"
-                  },
-                  {
-                    "name": "Reverse Plank",
-                    "duration": "30sec",
-                    "notes": "Squeeze glutes, push hips high"
-                  },
-                  {
-                    "name": "Mountain Climbers",
-                    "duration": "30sec",
-                    "notes": "Controlled, don't let hips sag"
-                  },
-                  {
-                    "name": "Rest",
-                    "duration": "60sec"
-                  }
-                ],
-                "rounds": 2,
-                "notes": "Isometric endurance for stability"
-              },
-              "notes": "Easy run with core endurance focus."
-            },
-            "athlete_2": {
-              "sessionType": "Functional Strength + Core",
-              "duration": "60 mins",
-              "intensity": "Moderate",
-              "mainWorkout": {
-                "type": "Strength Circuit",
-                "exercises": [
-                  {
-                    "name": "Deadlifts",
-                    "sets": 4,
-                    "reps": 8,
-                    "weight": "70-80kg",
-                    "rest": "2min",
-                    "notes": "Posterior chain power, brace hard"
-                  },
-                  {
-                    "name": "Bulgarian Split Squats",
-                    "sets": 3,
-                    "reps": "10 each leg",
-                    "weight": "16-20kg DBs",
-                    "rest": "90sec",
-                    "notes": "Balance and single-leg strength"
-                  },
-                  {
-                    "name": "Push Press",
-                    "sets": 4,
-                    "reps": 10,
-                    "weight": "20-24kg DBs",
-                    "rest": "90sec",
-                    "notes": "Build overhead strength for wall balls"
-                  },
-                  {
-                    "name": "Renegade Rows",
-                    "sets": 3,
-                    "reps": "10 each arm",
-                    "weight": "16-20kg DBs",
-                    "rest": "90sec",
-                    "notes": "Anti-rotation core strength + pulling"
-                  }
-                ]
-              },
-              "coreFinisher": {
-                "type": "Rotational Power + Hip Flexors",
-                "duration": "12 mins",
-                "rounds": 3,
-                "exercises": [
-                  {
-                    "name": "Medicine Ball Slams",
-                    "reps": 12,
-                    "weight": "8-10kg ball",
-                    "notes": "Full hip extension, explosive"
-                  },
-                  {
-                    "name": "Hanging Knee Raises",
-                    "reps": 12,
-                    "notes": "Bring knees to chest, control down"
-                  },
-                  {
-                    "name": "Russian Twists",
-                    "reps": 40,
-                    "weight": "10kg plate",
-                    "notes": "Feet elevated, tap plate on each side"
-                  },
-                  {
-                    "name": "Bicycle Crunches",
-                    "reps": 30,
-                    "notes": "Slow and controlled, opposite elbow to knee"
-                  }
-                ],
-                "rest": "45sec between exercises, 60sec between rounds"
-              }
-            }
-          },
-          {
-            "dayNumber": 6,
-            "date": "2025-12-20",
-            "dayOfWeek": "Saturday",
-            "athlete_1": {
-              "sessionType": "Long Run",
-              "duration": "55-60 mins",
-              "intensity": "Moderate - Zone 2-3",
-              "mainWorkout": {
-                "run": {
-                  "type": "Distance-based",
-                  "distance": "9-10km",
-                  "targetPace": "6:00-6:15/km",
-                  "heartRateZone": "Zone 2 rising to low Zone 3",
-                  "targetHR": "120-140 bpm",
-                  "effort": "Comfortable aerobic pace, slight increase towards end",
-                  "structure": {
-                    "first5km": {
-                      "pace": "6:10-6:15/km",
-                      "HR": "120-130 bpm",
-                      "notes": "Easy start, settle into rhythm"
-                    },
-                    "last4-5km": {
-                      "pace": "5:55-6:05/km",
-                      "HR": "130-140 bpm",
-                      "notes": "Lift pace slightly, finish strong"
-                    }
-                  },
-                  "notes": "Building endurance back post-race. Progressive effort."
-                }
-              },
-              "notes": "First longer run post-race. Listen to body. HR drift is normal in long runs."
-            },
-            "athlete_2": {
-              "sessionType": "Long Run",
-              "duration": "70-75 mins",
-              "intensity": "Moderate - Zone 2",
-              "mainWorkout": {
-                "run": {
-                  "type": "Distance-based",
-                  "distance": "12-13km",
-                  "targetPace": "5:45-6:00/km",
-                  "heartRateZone": "Zone 2",
-                  "targetHR": "103-120 bpm",
-                  "effort": "Comfortable, conversational throughout",
-                  "notes": "Aerobic base building. Keep HR in Zone 2. If HR climbs to Zone 3, slow down."
-                }
-              },
-              "notes": "Main aerobic session of the week. Volume over intensity."
-            }
-          },
-          {
-            "dayNumber": 7,
-            "date": "2025-12-21",
-            "dayOfWeek": "Sunday",
-            "athlete_1": {
-              "sessionType": "Active Recovery",
-              "duration": "20-30 mins",
-              "intensity": "Very Low - Zone 1",
-              "options": [
-                {
-                  "activity": "Walk",
-                  "duration": "30min",
-                  "HR": "91-109 bpm"
-                },
-                {
-                  "activity": "Easy bike",
-                  "duration": "25min",
-                  "HR": "91-109 bpm"
-                },
-                {
-                  "activity": "Swim",
-                  "duration": "20min easy"
-                },
-                "Complete rest"
-              ],
-              "notes": "Optional light movement. Zone 1 only if active."
-            },
-            "athlete_2": {
-              "sessionType": "Active Recovery + Mobility",
-              "duration": "30 mins",
-              "intensity": "Very Low - Zone 1",
-              "options": [
-                {
-                  "activity": "Walk",
-                  "duration": "20min",
-                  "HR": "86-103 bpm"
-                },
-                {
-                  "activity": "Yoga",
-                  "duration": "30min",
-                  "focus": "Hip mobility, hamstrings, thoracic rotation"
-                },
-                {
-                  "activity": "Foam rolling + stretching",
-                  "duration": "30min"
-                }
-              ],
-              "notes": "Recovery before next week."
-            }
-          }
-        ],
-        "weekSummary": {
-          "athlete_1": {
-            "totalSessions": 5,
-            "runningVolume": "~19-20km",
-            "runningTime": "~125 mins",
-            "strengthSessions": 1,
-            "coreSessions": 2,
-            "avgHeartRate": "Zone 1-2 dominant",
-            "notes": "Recovery week post-race. Ease back into training. Core foundation started."
-          },
-          "athlete_2": {
-            "totalSessions": 7,
-            "runningVolume": "~26-27km",
-            "runningTime": "~160 mins",
-            "strengthSessions": 2,
-            "coreSessions": 3,
-            "avgHeartRate": "Zone 2 dominant, Zone 3 tempo work",
-            "notes": "Normal training week. Building foundation with integrated core work."
-          }
-        }
+        day:'Monday Dec 15',
+        sessionType:'REST / Light Recovery',
+        duration:'30 mins optional',
+        intensity:'Very Low',
+        notes:'8 days post-race. Listen to your body. Prioritize recovery. Optional: 30min easy walk, 20min easy bike, or complete rest.'
       },
       {
-        "weekNumber": 2,
-        "weekDates": "2025-12-22 to 2025-12-28",
-        "phase": "Foundation Building",
-        "weekFocus": "Christmas week - maintain consistency, build base, establish core routine",
-        "combinedSession": false,
-        "note": "Holiday week - be flexible with scheduling but maintain quality",
-        "days": [
-          {
-            "dayNumber": 1,
-            "date": "2025-12-22",
-            "dayOfWeek": "Monday",
-            "athlete_1": {
-              "sessionType": "Functional Strength + Core",
-              "duration": "65 mins",
-              "intensity": "Moderate",
-              "warmup": {
-                "description": "10min dynamic warmup + 5min easy SkiErg",
-                "HR": "Zone 2 - 109-127 bpm"
-              },
-              "mainWorkout": {
-                "type": "Hyrox-Specific Strength",
-                "exercises": [
-                  {
-                    "name": "Back Squats",
-                    "sets": 4,
-                    "reps": 10,
-                    "weight": "60-70kg",
-                    "rest": "2min",
-                    "notes": "Leg strength for sleds and runs. Focus on bracing"
-                  },
-                  {
-                    "name": "Sled Push (Light)",
-                    "sets": 5,
-                    "distance": "25m",
-                    "weight": "Race weight - 10kg",
-                    "rest": "90sec",
-                    "notes": "Technical practice, explosive drive from legs"
-                  },
-                  {
-                    "name": "Farmers Carry",
-                    "sets": 4,
-                    "distance": "50m",
-                    "weight": "28-32kg per hand",
-                    "rest": "90sec",
-                    "notes": "Building capacity and anti-lateral flexion strength"
-                  },
-                  {
-                    "name": "Bench Press",
-                    "sets": 4,
-                    "reps": 10,
-                    "weight": "60-70kg",
-                    "rest": "2min",
-                    "notes": "Upper body pushing strength"
-                  },
-                  {
-                    "name": "Sandbag Lunges",
-                    "sets": 3,
-                    "distance": "30m",
-                    "weight": "20kg",
-                    "rest": "90sec",
-                    "notes": "Hip stability and core bracing under load"
-                  }
-                ]
-              },
-              "coreFinisher": {
-                "type": "Comprehensive Core Circuit",
-                "duration": "15 mins",
-                "rounds": 3,
-                "exercises": [
-                  {
-                    "name": "Weighted Plank",
-                    "duration": "45sec",
-                    "weight": "10kg plate on back",
-                    "notes": "Increase difficulty progressively"
-                  },
-                  {
-                    "name": "Single Arm Farmer Carries",
-                    "distance": "25m each side",
-                    "weight": "32kg",
-                    "notes": "Anti-lateral flexion, oblique endurance"
-                  },
-                  {
-                    "name": "Toes to Bar (or Hanging Leg Raises)",
-                    "reps": 10,
-                    "notes": "Hip flexor strength, critical for Burpee BJ"
-                  },
-                  {
-                    "name": "Pallof Press",
-                    "reps": "15 each side",
-                    "resistance": "Medium band",
-                    "notes": "Anti-rotation, stable torso"
-                  },
-                  {
-                    "name": "V-ups",
-                    "reps": 12,
-                    "notes": "Full range hip flexion and extension"
-                  }
-                ],
-                "rest": "45sec between exercises, 90sec between rounds"
-              },
-              "notes": "Building back strength with station work. Core finisher is comprehensive."
-            },
-            "athlete_2": {
-              "sessionType": "Functional Strength + Cardio Machines + Core",
-              "duration": "70 mins",
-              "intensity": "Moderate",
-              "warmup": {
-                "description": "10min dynamic warmup",
-                "HR": "Zone 2 - 103-120 bpm"
-              },
-              "mainWorkout": {
-                "strength": {
-                  "exercises": [
-                    {
-                      "name": "Front Squats",
-                      "sets": 4,
-                      "reps": 8,
-                      "weight": "50-60kg",
-                      "rest": "2min",
-                      "notes": "Upright torso, core braced tight"
-                    },
-                    {
-                      "name": "Sled Push",
-                      "sets": 5,
-                      "distance": "25m",
-                      "weight": "Race weight",
-                      "rest": "90sec",
-                      "notes": "Maintain power output"
-                    },
-                    {
-                      "name": "Wall Balls",
-                      "sets": 4,
-                      "reps": 30,
-                      "weight": "9kg/6kg",
-                      "rest": "90sec",
-                      "notes": "Full depth squat, explosive throw"
-                    }
-                  ]
-                },
-                "cardio": {
-                  "exercises": [
-                    {
-                      "name": "SkiErg",
-                      "sets": 4,
-                      "distance": "250m",
-                      "targetTime": "58-63sec",
-                      "targetHR": "Zone 4 - 138-155 bpm",
-                      "rest": "90sec",
-                      "notes": "Technical focus - arms, core, legs sequence"
-                    },
-                    {
-                      "name": "Row",
-                      "sets": 3,
-                      "distance": "500m",
-                      "targetTime": "1:52-1:57",
-                      "targetHR": "Zone 3-4 - 130-150 bpm",
-                      "rest": "2min",
-                      "notes": "Build capacity on weakness"
-                    }
-                  ]
-                }
-              },
-              "coreFinisher": {
-                "type": "Anti-Extension Focus",
-                "duration": "12 mins",
-                "rounds": 3,
-                "exercises": [
-                  {
-                    "name": "Ab Wheel Rollouts",
-                    "reps": 12,
-                    "notes": "Control the extension, brace hard"
-                  },
-                  {
-                    "name": "Dead Bugs",
-                    "reps": 20,
-                    "notes": "Lower back pressed down"
-                  },
-                  {
-                    "name": "Hollow Holds",
-                    "duration": "30sec",
-                    "notes": "Arms overhead, lower back flat"
-                  },
-                  {
-                    "name": "Bird Dogs",
-                    "reps": "12 each side",
-                    "notes": "Hold 2sec at extension"
-                  }
-                ],
-                "rest": "45sec between exercises"
-              },
-              "notes": "Combining strength with cardio machine work and core."
-            }
-          },
-          {
-            "dayNumber": 2,
-            "date": "2025-12-23",
-            "dayOfWeek": "Tuesday",
-            "athlete_1": {
-              "sessionType": "Fartlek Run + Core",
-              "duration": "55 mins",
-              "intensity": "Moderate-High - Zone 3-4",
-              "warmup": {
-                "description": "10min easy jog",
-                "pace": "6:30/km",
-                "heartRateZone": "Zone 2",
-                "targetHR": "109-127 bpm"
-              },
-              "mainWorkout": {
-                "type": "Fartlek (Speed Play)",
-                "duration": "35min",
-                "heartRateZones": "Varying Zone 2-5",
-                "structure": [
-                  {
-                    "interval": "2min fast",
-                    "pace": "4:30/km",
-                    "HR": "Zone 4-5 - 155-170 bpm",
-                    "effort": "Hard"
-                  },
-                  {
-                    "recovery": "2min easy",
-                    "pace": "6:00/km",
-                    "HR": "Zone 2 - 109-127 bpm"
-                  },
-                  {
-                    "interval": "3min moderate-hard",
-                    "pace": "4:45/km",
-                    "HR": "Zone 4 - 145-160 bpm"
-                  },
-                  {
-                    "recovery": "2min easy",
-                    "pace": "6:00/km",
-                    "HR": "Zone 2"
-                  },
-                  {
-                    "interval": "4min steady",
-                    "pace": "5:00/km",
-                    "HR": "Zone 3 - 127-145 bpm"
-                  },
-                  {
-                    "recovery": "2min easy",
-                    "pace": "6:00/km",
-                    "HR": "Zone 2"
-                  },
-                  {
-                    "interval": "1min very fast",
-                    "pace": "4:15/km",
-                    "HR": "Zone 5 - 163-181 bpm",
-                    "effort": "Near max"
-                  },
-                  {
-                    "recovery": "2min easy",
-                    "pace": "6:00/km",
-                    "HR": "Zone 2"
-                  },
-                  {
-                    "note": "Repeat pattern once more",
-                    "totalIntervals": "8 surges + 7 recoveries"
-                  }
-                ],
-                "notes": "Unstructured speed work. Respond to how you feel. HR will spike in efforts, should recover in easy portions."
-              },
-              "cooldown": {
-                "description": "5min easy jog",
-                "pace": "6:30/km",
-                "HR": "Zone 2 - 109-127 bpm"
-              },
-              "totalDistance": "~7.5km",
-              "coreFinisher": {
-                "type": "Quick Core Stability",
-                "duration": "10 mins",
-                "rounds": 2,
-                "exercises": [
-                  {
-                    "name": "Plank to Downward Dog",
-                    "reps": 12,
-                    "notes": "Flow between positions, maintain hollow core"
-                  },
-                  {
-                    "name": "Side Plank with Hip Dips",
-                    "reps": "10 each side",
-                    "notes": "Control the dip and lift"
-                  },
-                  {
-                    "name": "Mountain Climbers",
-                    "duration": "40sec",
-                    "notes": "Controlled, stable hips"
-                  },
-                  {
-                    "name": "Supermans",
-                    "reps": 15,
-                    "notes": "Posterior chain activation"
-                  }
-                ]
-              },
-              "notes": "Fun variation building speed endurance. HR monitoring shows recovery between efforts."
-            },
-            "athlete_2": {
-              "sessionType": "Tempo Run + Core",
-              "duration": "60 mins",
-              "intensity": "Moderate - Zone 3",
-              "warmup": {
-                "description": "2km easy jog",
-                "pace": "6:15/km",
-                "heartRateZone": "Zone 2",
-                "targetHR": "103-120 bpm",
-                "duration": "~12min"
-              },
-              "mainWorkout": {
-                "type": "Tempo",
-                "run": {
-                  "distance": "5km",
-                  "targetPace": "5:15-5:25/km",
-                  "heartRateZone": "Zone 3",
-                  "targetHR": "120-138 bpm",
-                  "effort": "Comfortably hard - can speak 3-5 word sentences",
-                  "duration": "~26-27min",
-                  "notes": "Hold steady HR in Zone 3. If it drifts to Zone 4, you're going too hard."
-                }
-              },
-              "cooldown": {
-                "description": "1.5km easy jog",
-                "pace": "6:15/km",
-                "heartRateZone": "Zone 2",
-                "targetHR": "103-120 bpm",
-                "duration": "~9min"
-              },
-              "totalDistance": "~8.5km",
-              "coreFinisher": {
-                "type": "Rotational Strength",
-                "duration": "12 mins",
-                "rounds": 3,
-                "exercises": [
-                  {
-                    "name": "Russian Twists",
-                    "reps": 40,
-                    "weight": "10kg plate",
-                    "notes": "Feet elevated, touch plate to ground each side"
-                  },
-                  {
-                    "name": "Pallof Press",
-                    "reps": "15 each side",
-                    "resistance": "Medium-heavy band",
-                    "notes": "Resist rotation, press straight out"
-                  },
-                  {
-                    "name": "Bicycle Crunches",
-                    "reps": 30,
-                    "notes": "Slow and controlled, full rotation"
-                  },
-                  {
-                    "name": "Standing Wood Chops",
-                    "reps": "12 each side",
-                    "weight": "8-10kg",
-                    "notes": "Full rotation, pivot feet"
-                  }
-                ],
-                "rest": "45sec between exercises"
-              },
-              "notes": "Building race pace endurance. Core work for rotational stability in running."
-            }
-          },
-          {
-            "dayNumber": 3,
-            "date": "2025-12-24",
-            "dayOfWeek": "Wednesday",
-            "athlete_1": {
-              "sessionType": "Easy Run",
-              "duration": "35 mins",
-              "intensity": "Low - Zone 2",
-              "mainWorkout": {
-                "run": {
-                  "type": "Time-based",
-                  "duration": "35min",
-                  "targetPace": "6:15-6:30/km",
-                  "heartRateZone": "Zone 2",
-                  "targetHR": "109-127 bpm",
-                  "distance": "~5-5.5km",
-                  "effort": "Conversational, easy",
-                  "notes": "Keep HR in Zone 2. If it climbs, slow down."
-                }
-              },
-              "notes": "Christmas Eve - light session. Family time priority. No core work today."
-            },
-            "athlete_2": {
-              "sessionType": "Easy Run",
-              "duration": "40 mins",
-              "intensity": "Low - Zone 2",
-              "mainWorkout": {
-                "run": {
-                  "type": "Time-based",
-                  "duration": "40min",
-                  "targetPace": "6:15-6:30/km",
-                  "heartRateZone": "Zone 2",
-                  "targetHR": "103-120 bpm",
-                  "distance": "~6km",
-                  "effort": "Easy, conversational",
-                  "notes": "Aerobic base work. Steady HR."
-                }
-              },
-              "notes": "Keep it easy. Enjoy the day. No core work today."
-            }
-          },
-          {
-            "dayNumber": 4,
-            "date": "2025-12-25",
-            "dayOfWeek": "Thursday",
-            "athlete_1": {
-              "sessionType": "REST - Christmas Day",
-              "notes": "Merry Christmas! Complete rest. Enjoy time with family and friends."
-            },
-            "athlete_2": {
-              "sessionType": "REST - Christmas Day",
-              "notes": "Merry Christmas! Complete rest. Enjoy the holiday."
-            }
-          },
-          {
-            "dayNumber": 5,
-            "date": "2025-12-26",
-            "dayOfWeek": "Friday",
-            "athlete_1": {
-              "sessionType": "Functional Strength + Core",
-              "duration": "60 mins",
-              "intensity": "Moderate",
-              "mainWorkout": {
-                "type": "Upper Body + Core Focus",
-                "exercises": [
-                  {
-                    "name": "Pull-ups",
-                    "sets": 4,
-                    "reps": "10-12",
-                    "rest": "90sec",
-                    "notes": "Build pulling strength, maintain hollow body"
-                  },
-                  {
-                    "name": "Dips",
-                    "sets": 4,
-                    "reps": "12-15",
-                    "rest": "90sec",
-                    "notes": "Full range, lean forward slightly"
-                  },
-                  {
-                    "name": "DB Overhead Press",
-                    "sets": 4,
-                    "reps": 10,
-                    "weight": "20-24kg DBs",
-                    "rest": "90sec",
-                    "notes": "Strict press, brace core"
-                  },
-                  {
-                    "name": "Burpees",
-                    "sets": 4,
-                    "reps": 15,
-                    "rest": "60sec",
-                    "notes": "Build capacity for Burpee BJ, explosive jump"
-                  }
-                ]
-              },
-              "coreFinisher": {
-                "type": "Hip Flexor Power + Anti-Extension",
-                "duration": "15 mins",
-                "rounds": 3,
-                "exercises": [
-                  {
-                    "name": "Hanging Knee Raises to L-sit",
-                    "reps": 10,
-                    "notes": "Bring knees high, hold L-sit for 2sec"
-                  },
-                  {
-                    "name": "Ab Wheel Rollouts",
-                    "reps": 12,
-                    "notes": "Full range, control back with abs"
-                  },
-                  {
-                    "name": "Hollow Body Rocks",
-                    "reps": 20,
-                    "notes": "Small controlled rocks"
-                  },
-                  {
-                    "name": "V-ups",
-                    "reps": 15,
-                    "notes": "Touch hands to feet, controlled down"
-                  },
-                  {
-                    "name": "Plank to Pike",
-                    "reps": 12,
-                    "notes": "Drive hips high, maintain straight arms"
-                  }
-                ],
-                "rest": "45sec between exercises, 90sec between rounds"
-              },
-              "notes": "Boxing Day workout. Shake off Christmas dinner! Core is critical today."
-            },
-            "athlete_2": {
-              "sessionType": "Functional Strength + Core",
-              "duration": "60 mins",
-              "intensity": "Moderate",
-              "mainWorkout": {
-                "type": "Full Body",
-                "exercises": [
-                  {
-                    "name": "Romanian Deadlifts",
-                    "sets": 4,
-                    "reps": 10,
-                    "weight": "70-80kg",
-                    "rest": "2min",
-                    "notes": "Hamstring and glute focus"
-                  },
-                  {
-                    "name": "Goblet Squats",
-                    "sets": 4,
-                    "reps": 12,
-                    "weight": "28-32kg KB",
-                    "rest": "90sec",
-                    "notes": "Upright torso, deep squat"
-                  },
-                  {
-                    "name": "Push-ups",
-                    "sets": 4,
-                    "reps": 20,
-                    "rest": "60sec",
-                    "notes": "Maintain hollow body position throughout"
-                  },
-                  {
-                    "name": "Bent Over Rows",
-                    "sets": 4,
-                    "reps": 12,
-                    "weight": "24-28kg DBs",
-                    "rest": "90sec",
-                    "notes": "Hinge at hips, stable core"
-                  }
-                ]
-              },
-              "coreFinisher": {
-                "type": "Core Endurance Challenge",
-                "duration": "15 mins",
-                "structure": "AMRAP (As Many Rounds As Possible)",
-                "exercises": [
-                  {
-                    "name": "Plank Hold",
-                    "duration": "45sec"
-                  },
-                  {
-                    "name": "Russian Twists",
-                    "reps": 30,
-                    "weight": "10kg"
-                  },
-                  {
-                    "name": "Mountain Climbers",
-                    "reps": 30
-                  },
-                  {
-                    "name": "Dead Bugs",
-                    "reps": 20
-                  },
-                  {
-                    "name": "Side Plank",
-                    "duration": "30sec each side"
-                  }
-                ],
-                "rest": "Minimal - move between exercises continuously",
-                "notes": "See how many rounds you can complete in 15min"
-              }
-            }
-          },
-          {
-            "dayNumber": 6,
-            "date": "2025-12-27",
-            "dayOfWeek": "Saturday",
-            "athlete_1": {
-              "sessionType": "Long Run",
-              "duration": "65 mins",
-              "intensity": "Moderate - Zone 2-3 Progressive",
-              "mainWorkout": {
-                "run": {
-                  "type": "Distance-based progressive",
-                  "distance": "10-11km",
-                  "overallPace": "5:55-6:10/km average",
-                  "heartRateProgression": "Zone 2 → low Zone 3",
-                  "structure": {
-                    "kilometers1-3": {
-                      "pace": "6:10-6:15/km",
-                      "HR": "115-125 bpm (low Zone 2)",
-                      "effort": "Easy, conversational",
-                      "notes": "Settle into rhythm, warm up"
-                    },
-                    "kilometers4-7": {
-                      "pace": "6:00-6:05/km",
-                      "HR": "125-135 bpm (mid Zone 2 to low Zone 3)",
-                      "effort": "Comfortable, sustainable",
-                      "notes": "Main aerobic work"
-                    },
-                    "kilometers8-11": {
-                      "pace": "5:50-5:55/km",
-                      "HR": "135-142 bpm (Zone 3)",
-                      "effort": "Moderately hard, focused",
-                      "notes": "Finish strong, practice negative split"
-                    }
-                  },
-                  "totalTime": "~62-68min",
-                  "notes": "Progressive effort. Start easy, build gradually. HR drift is normal - expect 10-15 bpm increase throughout."
-                }
-              },
-              "notes": "Building long run volume and practicing race pacing. HR management is key."
-            },
-            "athlete_2": {
-              "sessionType": "Long Run",
-              "duration": "75-80 mins",
-              "intensity": "Moderate - Zone 2",
-              "mainWorkout": {
-                "run": {
-                  "type": "Distance-based steady",
-                  "distance": "13-14km",
-                  "targetPace": "5:45-6:00/km",
-                  "heartRateZone": "Zone 2",
-                  "targetHR": "103-120 bpm",
-                  "hrManagement": {
-                    "first30min": {
-                      "targetHR": "103-115 bpm",
-                      "notes": "Start conservative, aerobic adaptation"
-                    },
-                    "last30-40min": {
-                      "targetHR": "115-125 bpm",
-                      "notes": "Allow natural drift, don't force pace if HR climbs"
-                    }
-                  },
-                  "effort": "Comfortable, conversational throughout",
-                  "notes": "Aerobic base building. If HR climbs above 125 bpm, slow pace. Volume > intensity today."
-                }
-              },
-              "notes": "Main endurance session. Monitor HR closely, don't let ego push pace."
-            }
-          },
-          {
-            "dayNumber": 7,
-            "date": "2025-12-28",
-            "dayOfWeek": "Sunday",
-            "athlete_1": {
-              "sessionType": "Active Recovery + Core",
-              "duration": "40 mins",
-              "intensity": "Very Low - Zone 1",
-              "mainWorkout": {
-                "activity": {
-                  "options": [
-                    {
-                      "type": "Easy walk",
-                      "duration": "30min",
-                      "HR": "91-109 bpm"
-                    },
-                    {
-                      "type": "Light bike",
-                      "duration": "25min",
-                      "HR": "91-109 bpm"
-                    },
-                    {
-                      "type": "Mobility work",
-                      "duration": "20min"
-                    }
-                  ]
-                }
-              },
-              "coreWork": {
-                "type": "Gentle Core Activation",
-                "duration": "10 mins",
-                "exercises": [
-                  {
-                    "name": "Cat-Cow Stretches",
-                    "reps": 15,
-                    "notes": "Spinal mobility"
-                  },
-                  {
-                    "name": "Bird Dogs",
-                    "reps": "10 each side",
-                    "tempo": "Slow and controlled"
-                  },
-                  {
-                    "name": "Dead Bugs",
-                    "reps": 15,
-                    "tempo": "Slow"
-                  },
-                  {
-                    "name": "Child's Pose to Cobra",
-                    "reps": 10,
-                    "notes": "Gentle spinal extension/flexion"
-                  }
-                ],
-                "notes": "Gentle core activation and mobility"
-              },
-              "notes": "End of holiday week. Prepare for structured training ahead. Light core work only."
-            },
-            "athlete_2": {
-              "sessionType": "Active Recovery",
-              "duration": "30 mins",
-              "intensity": "Very Low - Zone 1",
-              "options": [
-                {
-                  "activity": "Easy walk",
-                  "duration": "30min",
-                  "HR": "86-103 bpm"
-                },
-                {
-                  "activity": "Yoga",
-                  "duration": "30min",
-                  "focus": "Hip openers, hamstrings, lower back"
-                },
-                {
-                  "activity": "Foam rolling + stretching",
-                  "duration": "30min"
-                }
-              ],
-              "notes": "Recovery day. Get ready for doubles work in 2 weeks."
-            }
+        day:'Tuesday Dec 16',
+        sessionType:'Easy Recovery Run',
+        duration:'30 mins',
+        intensity:'Very Low - Zone 1',
+        mainWorkout:{
+          run:{
+            type:'Time-based',
+            duration:'30min',
+            targetPace:'6:30-6:45/km',
+            heartRateZone:'Zone 1',
+            targetHR:'91-109 bpm',
+            distance:'~4.5km',
+            effort:'Very easy, nose breathing only',
+            notes:'First run post-race. Keep it easy. HR should stay below 110 bpm.'
           }
-        ],
-        "weekSummary": {
-          "athlete_1": {
-            "totalSessions": 7,
-            "runningVolume": "~28-29km",
-            "runningTime": "~165 mins",
-            "strengthSessions": 2,
-            "coreSessions": 4,
-            "heartRateDistribution": {
-              "zone1": "15%",
-              "zone2": "60%",
-              "zone3": "15%",
-              "zone4": "8%",
-              "zone5": "2%"
-            },
-            "notes": "Good week despite holidays. Building momentum. Core work becoming routine."
-          },
-          "athlete_2": {
-            "totalSessions": 7,
-            "runningVolume": "~33-34km",
-            "runningTime": "~190 mins",
-            "strengthSessions": 2,
-            "coreSessions": 4,
-            "heartRateDistribution": {
-              "zone1": "10%",
-              "zone2": "70%",
-              "zone3": "18%",
-              "zone4": "2%",
-              "zone5": "0%"
-            },
-            "notes": "Solid foundation week. Core strength building well."
+        },
+        notes:'First run post-race. Keep HR in Zone 1. Monitor closely.'
+      },
+      {
+        day:'Wednesday Dec 17',
+        sessionType:'Functional Strength + Core Focus',
+        duration:'60 mins',
+        intensity:'Moderate',
+        mainWorkout:{
+          type:'Hyrox-Specific Strength',
+          exercises:[
+            {name:'Front Squats',sets:4,reps:8,weight:'50-60kg',rest:'2min'},
+            {name:'Farmer Walk Holds',sets:4,duration:'45sec',weight:'32-36kg per hand',rest:'90sec'},
+            {name:'Wall Ball Practice',sets:4,reps:25,weight:'9kg',rest:'90sec'},
+            {name:'Pull-ups',sets:4,reps:'8-10',rest:'90sec'}
+          ]
+        },
+        notes:'Building back strength with station work. Core finisher critical. First session back - don\'t overdo it.'
+      },
+      {
+        day:'Thursday Dec 18',
+        sessionType:'REST',
+        intensity:'None',
+        notes:'Complete rest. Focus on sleep and nutrition.'
+      },
+      {
+        day:'Friday Dec 19',
+        sessionType:'Easy Run + Core',
+        duration:'45 mins',
+        intensity:'Low - Zone 2',
+        mainWorkout:{
+          run:{
+            duration:'35min',
+            targetPace:'6:15-6:30/km',
+            heartRateZone:'Zone 2',
+            targetHR:'109-127 bpm',
+            distance:'~5-5.5km'
           }
-        }
+        },
+        notes:'Building volume back gradually. Core endurance finisher included.'
+      },
+      {
+        day:'Saturday Dec 20',
+        sessionType:'Long Run',
+        duration:'55-60 mins',
+        intensity:'Moderate - Zone 2-3',
+        mainWorkout:{
+          run:{
+            distance:'9-10km',
+            targetPace:'6:00-6:15/km',
+            heartRateZone:'Zone 2 → low Zone 3',
+            targetHR:'120-140 bpm'
+          }
+        },
+        notes:'First longer run post-race. Progressive effort. Start 6:10, finish 5:55/km.'
+      },
+      {
+        day:'Sunday Dec 21',
+        sessionType:'Active Recovery',
+        duration:'20-30 mins',
+        intensity:'Very Low - Zone 1',
+        notes:'Optional light movement: walk, easy bike, or complete rest.'
       }
     ]
-  }
+  };
+
+  const programPhases = {
+    1:{
+      phase:'Foundation Building',
+      dates:'Dec 15-21',
+      focus:'Post-race recovery, establish doubles baseline',
+      intensity:'Low-Moderate',
+      notes:'Tony just raced Dec 7. Active recovery week with gradual return to training.',
+      startDate:'2025-12-15'
+    }
+  };
+
+  const toggleComp=(w,i)=>{
+    const k=`tony-${w}-${i}`;
+    setComp(p=>({...p,[k]:!p[k]}));
+  };
+
+  const isComp=(w,i)=>comp[`tony-${w}-${i}`]||false;
+
+  const getCompletion=(w)=>{
+    const t=tonyWeeklyPlans[w];
+    if(!t)return{completed:0,total:0,percentage:0};
+    let c=0;
+    t.forEach((_,i)=>{if(isComp(w,i))c++;});
+    return{completed:c,total:t.length,percentage:Math.round((c/t.length)*100)};
+  };
+
+  const getStats=()=>{
+    const currentPlanData=tonyWeeklyPlans[week];
+    if(!currentPlanData)return{total:0,running:0,strength:0,core:0};
+    
+    let runningCount=0;
+    let strengthCount=0;
+    let coreCount=0;
+    let totalCount=0;
+    
+    currentPlanData.forEach((day,i)=>{
+      if(isComp(week,i)){
+        totalCount++;
+        if(day.sessionType.includes('Run'))runningCount++;
+        if(day.sessionType.includes('Strength'))strengthCount++;
+        if(day.sessionType.includes('Core')||day.notes?.includes('core'))coreCount++;
+      }
+    });
+    
+    return{total:totalCount,running:runningCount,strength:strengthCount,core:coreCount};
+  };
+
+  const logWorkout=()=>{
+    if(!currentWorkout.type)return;
+    const newWorkout={...currentWorkout,id:Date.now()};
+    setWorkouts([newWorkout,...workouts]);
+    setCurrentWorkout({date:new Date().toISOString().split('T')[0],type:'',duration:'',notes:''});
+    setShowLogForm(false);
+  };
+
+  const currentPlan=tonyWeeklyPlans[week]||[];
+  const currentPhase=programPhases[week];
+
+  return <div className="min-h-screen p-4" style={{background:'#0a0a0a'}}>
+    <div className="max-w-6xl mx-auto pb-20">
+      {/* Header */}
+      <div className="mb-8">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <Flame s={40} style={{color:'#ff6b35'}}/>
+            <div>
+              <h1 className="text-3xl font-bold" style={{color:'#ff6b35'}}>Tony's Doubles Training</h1>
+              <p className="text-sm" style={{color:'#ff8c42'}}>15-Week Hyrox Doubles Program</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* User Profile Card */}
+        <div className="border-2 rounded-lg p-4 shadow-lg" style={{backgroundColor:'#1a1a1a',borderColor:'#333'}}>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex items-center gap-3">
+              <User s={24} style={{color:'#ff6b35'}}/>
+              <div>
+                <div className="font-bold text-white">{USER.name}</div>
+                <div className="text-sm text-gray-400">{USER.age}yrs | {USER.height}, {USER.weight}</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Users s={24} style={{color:'#ff6b35'}}/>
+              <div>
+                <div className="font-bold text-white">Partner: {USER.partner}</div>
+                <div className="text-sm text-gray-400">Doubles Team</div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-3 pt-3 border-t" style={{borderColor:'#333'}}>
+            <div className="text-xs text-gray-400 mb-1">Current PRs</div>
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <div className="text-gray-300">You: <span style={{color:'#ff6b35'}}>{USER.recentPR}</span></div>
+              <div className="text-gray-300">Partner: <span style={{color:'#ff6b35'}}>{USER.partnerPR}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Race Goal Card */}
+      <div className="border-2 rounded-lg p-4 shadow-md mb-6" style={{backgroundColor:'#1a1a1a',borderColor:'#ff6b35'}}>
+        <div className="text-gray-400 text-sm font-semibold">Race Day</div>
+        <div className="text-2xl font-bold" style={{color:'#ff6b35'}}>March 29, 2026</div>
+        <div className="text-gray-300 text-sm mt-1">Hyrox Doubles - London ExCel</div>
+        <div className="text-xl font-bold text-white mt-2">Target: Sub 1:20:00</div>
+      </div>
+
+      {/* Stats Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        {(()=>{
+          const s=getStats();
+          return(<>
+            <div className="border-2 rounded-lg p-4 shadow-md" style={{backgroundColor:'#1a1a1a',borderColor:'#333'}}>
+              <div className="text-gray-400 text-sm">This Week</div>
+              <div className="text-3xl font-bold" style={{color:'#ff6b35'}}>{s.total}</div>
+              <div className="text-gray-400 text-xs">Completed</div>
+            </div>
+            <div className="border-2 rounded-lg p-4 shadow-md" style={{backgroundColor:'#1a1a1a',borderColor:'#333'}}>
+              <div className="text-gray-400 text-sm">Running</div>
+              <div className="text-3xl font-bold" style={{color:'#ff6b35'}}>{s.running}</div>
+              <div className="text-gray-400 text-xs">Sessions</div>
+            </div>
+            <div className="border-2 rounded-lg p-4 shadow-md" style={{backgroundColor:'#1a1a1a',borderColor:'#333'}}>
+              <div className="text-gray-400 text-sm">Strength</div>
+              <div className="text-3xl font-bold" style={{color:'#ff6b35'}}>{s.strength}</div>
+              <div className="text-gray-400 text-xs">Sessions</div>
+            </div>
+            <div className="border-2 rounded-lg p-4 shadow-md" style={{backgroundColor:'#1a1a1a',borderColor:'#333'}}>
+              <div className="text-gray-400 text-sm">Core</div>
+              <div className="text-3xl font-bold" style={{color:'#ff6b35'}}>{s.core}</div>
+              <div className="text-gray-400 text-xs">Sessions</div>
+            </div>
+          </>);
+        })()}
+      </div>
+
+      {/* Tab Navigation */}
+      <div className="flex gap-2 mb-6 border-b-2 overflow-x-auto" style={{borderColor:'#333'}}>
+        {['plan','log','history'].map(t=>{
+          const icons={plan:Calendar,log:Plus,history:TrendingUp};
+          const I=icons[t];
+          const labels={plan:'Plan',log:'Log',history:'History'};
+          return <button 
+            key={t} 
+            onClick={()=>setTab(t)} 
+            className={`px-6 py-3 font-semibold whitespace-nowrap ${tab===t?'border-b-2':''}`} 
+            style={tab===t?{borderBottomColor:'#ff6b35',color:'#ff6b35'}:{color:'#666'}}
+          >
+            <I s={18} className="inline mr-2"/>{labels[t]}
+          </button>
+        })}
+      </div>
+
+      {/* Main Content */}
+      <div className="border-2 rounded-lg p-6 shadow-lg" style={{backgroundColor:'#1a1a1a',borderColor:'#333'}}>
+        {tab==='plan'&&<div>
+          <h3 className="text-xl font-bold mb-4" style={{color:'#ff6b35'}}>15-Week Training Program</h3>
+          
+          {/* Week Selector */}
+          <div className="flex items-center gap-3 mb-6">
+            <button 
+              onClick={()=>setWeek(Math.max(1,week-1))} 
+              disabled={week===1} 
+              className="px-4 py-2 border-2 rounded disabled:opacity-50 disabled:cursor-not-allowed text-white" 
+              style={{backgroundColor:'#1a1a1a',borderColor:'#333'}}
+            >
+              ←
+            </button>
+            <div className="flex-1 flex gap-2 overflow-x-auto pb-2">
+              {[...Array(15)].map((_,i)=>{
+                const w=i+1;
+                const c=getCompletion(w);
+                const info=programPhases[w];
+                return <button 
+                  key={w} 
+                  onClick={()=>setWeek(w)} 
+                  className={`flex-shrink-0 px-4 py-3 rounded-lg font-semibold transition border-2 ${week===w?'shadow-lg':''}`} 
+                  style={week===w?{backgroundColor:'#ff6b35',borderColor:'#ff6b35',color:'#000'}:{backgroundColor:'#1a1a1a',borderColor:'#333',color:'#fff'}}
+                >
+                  <div className="text-sm">Week {w}</div>
+                  {c.completed>0&&<div className="text-xs mt-1">{c.percentage}%</div>}
+                </button>
+              })}
+            </div>
+            <button 
+              onClick={()=>setWeek(Math.min(15,week+1))} 
+              disabled={week===15} 
+              className="px-4 py-2 border-2 rounded disabled:opacity-50 disabled:cursor-not-allowed text-white" 
+              style={{backgroundColor:'#1a1a1a',borderColor:'#333'}}
+            >
+              →
+            </button>
+          </div>
+
+          {/* Phase Info */}
+          {currentPhase&&<div className="border-2 rounded-lg p-5 mb-6 shadow-md" style={{backgroundColor:'#0a0a0a',borderColor:'#333'}}>
+            <div className="flex justify-between items-start mb-3">
+              <div>
+                <h4 className="text-2xl font-bold" style={{color:'#ff6b35'}}>Week {week}</h4>
+                <div className="text-sm text-gray-400 mt-1">{currentPhase.dates}</div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+              <div>
+                <div className="text-sm text-gray-400">Phase</div>
+                <div className="text-lg font-semibold" style={{color:'#ff6b35'}}>{currentPhase.phase}</div>
+              </div>
+              <div>
+                <div className="text-sm text-gray-400">Intensity</div>
+                <div className="text-lg font-semibold text-white">{currentPhase.intensity}</div>
+              </div>
+              <div>
+                <div className="text-sm text-gray-400">Completion</div>
+                <div className="text-lg font-semibold text-white">{getCompletion(week).completed}/{getCompletion(week).total} sessions</div>
+              </div>
+            </div>
+            <div className="mt-3 text-sm text-gray-300 italic">{currentPhase.notes}</div>
+          </div>}
+
+          {/* Workouts */}
+          <div className="space-y-3">
+            {currentPlan.length>0?currentPlan.map((day,i)=>{
+              return <WorkoutCard 
+                key={`${week}-${i}`} 
+                day={day} 
+                isComplete={isComp(week,i)} 
+                onToggle={()=>toggleComp(week,i)}
+                showHR={true}
+              />
+            }):<div className="text-center py-8 text-gray-400">No workouts available for this week</div>}
+          </div>
+        </div>}
+
+        {tab==='log'&&<div>
+          {!showLogForm?<button 
+            onClick={()=>setShowLogForm(true)} 
+            className="w-full py-8 border-2 border-dashed rounded-lg" 
+            style={{borderColor:'#ff6b35',backgroundColor:'#1a1a1a'}}
+          >
+            <Plus s={32} style={{color:'#ff6b35'}}/>
+            <div className="text-xl font-semibold" style={{color:'#ff6b35'}}>Log Workout</div>
+          </button>:<div className="space-y-4">
+            <h3 className="text-xl font-bold" style={{color:'#ff6b35'}}>Log Workout</h3>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-white">Date</label>
+              <input 
+                type="date" 
+                value={currentWorkout.date} 
+                onChange={e=>setCurrentWorkout({...currentWorkout,date:e.target.value})} 
+                className="w-full text-white rounded px-4 py-2 border-2" 
+                style={{backgroundColor:'#0a0a0a',borderColor:'#333'}}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-white">Type</label>
+              <select 
+                value={currentWorkout.type} 
+                onChange={e=>setCurrentWorkout({...currentWorkout,type:e.target.value})} 
+                className="w-full text-white rounded px-4 py-2 border-2" 
+                style={{backgroundColor:'#0a0a0a',borderColor:'#333'}}
+              >
+                <option value="">Select...</option>
+                <option value="Running">Running</option>
+                <option value="Strength">Strength</option>
+                <option value="Doubles">Doubles Session</option>
+                <option value="Core">Core</option>
+                <option value="Rest">Rest</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-white">Duration (min)</label>
+              <input 
+                type="number" 
+                value={currentWorkout.duration} 
+                onChange={e=>setCurrentWorkout({...currentWorkout,duration:e.target.value})} 
+                placeholder="60" 
+                className="w-full text-white rounded px-4 py-2 border-2" 
+                style={{backgroundColor:'#0a0a0a',borderColor:'#333'}}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-white">Notes</label>
+              <textarea 
+                value={currentWorkout.notes} 
+                onChange={e=>setCurrentWorkout({...currentWorkout,notes:e.target.value})} 
+                placeholder="How did it feel?" 
+                className="w-full text-white rounded px-4 py-2 h-24 border-2" 
+                style={{backgroundColor:'#0a0a0a',borderColor:'#333'}}
+              />
+            </div>
+            <div className="flex gap-3">
+              <button 
+                onClick={logWorkout} 
+                className="flex-1 px-6 py-3 rounded-lg font-semibold text-black" 
+                style={{backgroundColor:'#ff6b35'}}
+              >
+                Save
+              </button>
+              <button 
+                onClick={()=>setShowLogForm(false)} 
+                className="px-6 py-3 border-2 rounded-lg font-semibold text-white" 
+                style={{backgroundColor:'#1a1a1a',borderColor:'#333'}}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>}
+        </div>}
+
+        {tab==='history'&&<div>
+          <h3 className="text-xl font-bold mb-4" style={{color:'#ff6b35'}}>History</h3>
+          {workouts.length===0?<div className="text-center py-12" style={{color:'#666'}}>
+            <Clock s={48} className="mx-auto mb-4 opacity-50"/>
+            <p>No workouts logged</p>
+          </div>:<div className="space-y-3">
+            {workouts.map(w=><div 
+              key={w.id} 
+              className="border-2 rounded-lg p-4 shadow-sm" 
+              style={{backgroundColor:'#0a0a0a',borderColor:'#333'}}
+            >
+              <div className="flex justify-between mb-2">
+                <div>
+                  <div className="font-bold text-white">{w.type}</div>
+                  <div className="text-sm text-gray-400">
+                    {new Date(w.date).toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}
+                  </div>
+                </div>
+                <div className="text-sm font-semibold" style={{color:'#ff6b35'}}>{w.duration} min</div>
+              </div>
+              {w.notes&&<div className="text-sm text-gray-300 mt-2 pt-2 border-t" style={{borderColor:'#333'}}>
+                {w.notes}
+              </div>}
+            </div>)}
+          </div>}
+        </div>}
+      </div>
+    </div>
+  </div>
 }
+
+ReactDOM.render(<App/>,document.getElementById('root'));
+</script>
+</body>
+</html>
